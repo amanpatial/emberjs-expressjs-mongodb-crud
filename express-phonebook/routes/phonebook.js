@@ -40,7 +40,7 @@ router.post('/', function(req, res, next) {
 router.route('/phonebooks')
  
     // create a phonebook (accessed at POST /api/phonebooks 
-    // params e.g. firstname, lastname, phonebook)
+    // params e.g. firstname, lastname, phonenumber)
     .post(function(req, res) {
         
         var pbInstance = new Phonebook();      // create a new instance of the Phonebook model
@@ -54,7 +54,8 @@ router.route('/phonebooks')
             if (err)
                 res.send(err);
 
-            res.json({ message: 'phonebook created!' });
+            res.json({ status: "OK", message: 'Phonebook is created successfully!' });
+          
         });
     })
     
@@ -99,7 +100,7 @@ router.route('/phonebooks')
                 if (err)
                     res.send(err);
 
-                res.json({ message: 'phonebook updated!' });
+                res.json({ status: "OK", message: 'Phonebook is updated successfully!' });
             });
 
         });
@@ -113,7 +114,7 @@ router.route('/phonebooks')
             if (err)
                 res.send(err);
 
-            res.json({ message: 'Successfully deleted' });
+            res.json({ status: "OK", message: 'Phonebook is deleted successfully!' });
         });
     });
 
