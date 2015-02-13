@@ -1,0 +1,7 @@
+<ul class="phonebooks-listing">
+  {{#each phonebook in controller}}
+    <li>{{phonebook.firstname}}</li>
+  {{else}}
+    <li>no phonebook... :-(</li>
+  {{/each}}
+</ul>

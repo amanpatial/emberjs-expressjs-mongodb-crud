@@ -10,6 +10,23 @@ var mongoose   = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/phonebookexpress'); // connect to our database
 
 
+// ## CORS middleware
+// see: http://stackoverflow.com/questions/7067966/how-to-allow-cors-in-express-nodejs
+var allowCrossDomain = function(req, res, next) {
+    console.log("writing cross domain headers...");
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+    // intercept OPTIONS method
+    if ('OPTIONS' == req.method) {
+      res.send(200);
+    }
+    else {
+      next();
+    }
+};
+
 //ROUTES FOR OUR API
 
 var routes = require('./routes/index');
@@ -17,6 +34,8 @@ var users = require('./routes/users');
 var phonebook = require('./routes/phonebook');
 
 var app = express();
+
+app.use(allowCrossDomain);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

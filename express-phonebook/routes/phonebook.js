@@ -6,11 +6,11 @@ var Phonebook = require('../models/phonebook');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    console.log('Phonebook GET route.');	
+    console.log('Phonebook GET route for testing purpose.');	
  });
 
 router.post('/', function(req, res, next) {
-	console.log('Phonebook POST route.');	
+	console.log('Phonebook POST route for testing purpose.');	
 });
 
 
@@ -40,14 +40,14 @@ router.post('/', function(req, res, next) {
 router.route('/phonebooks')
  
     // create a phonebook (accessed at POST /api/phonebooks 
-    // params e.g. firstname, lastname, phonenumber)
+    // params e.g. firstname, lastname, phonebook)
     .post(function(req, res) {
-        
+
         var pbInstance = new Phonebook();      // create a new instance of the Phonebook model
         
-        pbInstance.firstname = req.body.firstname;  
-        pbInstance.lastname = req.body.lastname;  
-        pbInstance.phonenumber = req.body.phonenumber;  
+        pbInstance.firstname = req.body.phonebook.firstname;  
+        pbInstance.lastname = req.body.phonebook.lastname;  
+        pbInstance.phonenumber = req.body.phonebook.phonenumber;
 
         // save the phonebook and check for errors
         pbInstance.save(function(err) {
@@ -65,8 +65,8 @@ router.route('/phonebooks')
         Phonebook.find(function(err, phonebooks) {
             if (err)
                 res.send(err);
-
-            res.json(phonebooks);
+             
+            res.json({phonebooks:phonebooks});
         });
     });    
  
@@ -91,9 +91,9 @@ router.route('/phonebooks')
                 res.send(err);
 
            // update the phonebook info
-            phonebook.firstname = req.body.firstname;  
-            phonebook.lastname = req.body.lastname;  
-            phonebook.phonenumber = req.body.phonenumber;  
+            phonebook.firstname = req.body.phonebook.firstname;  
+            phonebook.lastname = req.body.phonebook.lastname;  
+            phonebook.phonenumber = req.body.phonebook.phonenumber;  
 
             // save the phonebook
             phonebook.save(function(err) {
@@ -117,7 +117,6 @@ router.route('/phonebooks')
             res.json({ status: "OK", message: 'Phonebook is deleted successfully!' });
         });
     });
-
 
 
 module.exports = router;

@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset= "utf-8">
+<title>Ember CRUD Demo</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+ 
+  <script type="text/x-handlebars" data-template-name="application">
+  <div class="container">
+    <h1>PhoneBook</h1>
+
+        <div class="navbar">
+          <div class="navbar-inner">
+            <ul class="nav">
+              
+              {{#view PhonebookApp.NavView}}
+                {{#linkTo "index"}}Home{{/linkTo}}
+              {{/view}}
+              
+              {{#view PhonebookApp.NavView}}
+                {{#linkTo "phonebooks"}}Phone Book{{/linkTo}}
+              {{/view}}
+              
+
+              {{#view PhonebookApp.NavView}}
+                {{#linkTo "about"}}About{{/linkTo}}
+              {{/view}}
+
+            </ul>
+          </div>
+        </div>
+    {{outlet}}
+  </div>
+  </script>  
+
+  <script type="text/x-handlebars" data-template-name="index" >
+    <p>Phonebook demo app frontend (CRUD) is developed using emberjs and consumed the REST APIs (CRUD) which are developed using Expressjs(nodejs) and mongoDB</p>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="phonebooks/index">
+
+    {{#if phonebooksPresent}}
+      <p>No. of phonebooks = {{content.length}}</p>
+
+      {{#if itemsSelected}}
+        <p><button {{action 'removeSelectedPhonebooks'}}>Remove {{editCounter}} selected phonebooks</button></p>
+      {{/if}}
+
+      <table class="table table-hover">
+      <tr>
+        <th>Selected</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>PhoneNumber</th>
+        <th></th>
+        <th></th>
+      </tr>
+        {{#each location in controller itemController="phonebooksEdit"}}
+          <tr {{bindAttr class="selected:warning"}}>
+          <td>{{view Ember.Checkbox checkedBinding="selected"}}</td>
+          <td>{{location.firstname}}</td>
+          <td>{{location.lastname}}</td>
+          <td>{{location.phonenumber}}</td>
+          <td>{{#linkTo "phonebooks.edit" location}}<img src="images/edit-icon.png"/>{{/linkTo}}</td>
+          <td><a href="#" {{action removeItem location}}><img src="images/delete-icon.png" border="0"/></a></td>
+          </tr>
+        {{/each}}
+      </table>
+
+    {{else}}
+      No phonebooks present.
+    {{/if}}
+
+    <p>{{#linkTo "phonebooks.new"}}<img src="images/add-icon.png"/> New phonebook{{/linkTo}}</p>
+
+    
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="_phonebookForm" >
+      <form class="form-horizontal">
+      <div class="control-group">
+        <label class="control-label" for="firstname">First Name</label>
+        <div class="controls">
+          {{view Ember.TextField valueBinding="firstname"}}
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="lastname">Last Name</label>
+        <div class="controls">
+          {{view Ember.TextField valueBinding="lastname"}}
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="phonenumber">Phone No.</label>
+        <div class="controls">
+          {{view Ember.TextField valueBinding="phonenumber"}}
+        </div>
+      </div>
+    </form>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="phonebooks/edit" >
+    
+    {{#if controller.isNew}}
+      <h1>New phonebook</h1>
+    {{else}}
+      <h1>Edit phonebook</h1>
+    {{/if}}
+       {{partial "phonebookForm"}}
+
+    <p><button {{action updateItem this}}>Update record</button></p>
+    
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="about" >
+      <p>Aman patial is a technologist and qualified in PGDBA (IB), B-Tech (CSE) with 8 plus years of experience in software development in Telecom, Digital Media, Healthcare  and Education domains, and spearheaded the multiple business projects through conceptual design, architecture and development while allow the team to deliver their best.Through his experience and business acumen, he successfully bridged the gap between the multiple teams to make sure on-time, within budget delivery of high quality software. His specialties are Solution and Services Architecture, Web Programming and Development, Database Design and Analytic, Cloud Computing, Mobile Applications Development, Project Management. He is an IT professional who believes in the enrichment of human lives and positive mass impact on societies through technology. Personally, he also loves music, books and nature and believes to pay back to the community more than what has been received till today through direct and indirect form.</p>
+  </script>
+
+  <script src="js/jquery-1.9.1.js"></script>
+  <script src="js/handlebars-v1.3.0.js"></script>
+  <script src="js/ember-1.5.1.js"></script>
+  <script src="js/ember-data-1.0.0-beta.7.f87cba88.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
