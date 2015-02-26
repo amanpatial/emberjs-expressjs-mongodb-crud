@@ -1,14 +1,14 @@
 ## Start Expressjs Phonebook API
-cd <expressjsprojectfolder>
-npm install  
-Cmd to start ``node bin/www
+1. cd expressjs_project_folder 
+2. npm install  
+3. node bin/www
 
 ## Header Parameters
 
-``Content-Type  application/json
+Content-Type  application/json
 
 ## Request Sample to test a Phonebook Create API
-``
+`
 {
  "phonebook": {
   "firstname": "aman",
