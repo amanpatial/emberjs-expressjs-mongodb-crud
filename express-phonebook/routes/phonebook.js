@@ -4,16 +4,6 @@ var router = express.Router();
 var Phonebook = require('../models/phonebook');
 
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-    console.log('Phonebook GET route for testing purpose.');	
- });
-
-router.post('/', function(req, res, next) {
-	console.log('Phonebook POST route for testing purpose.');	
-});
-
-
 /*  Basic routes for an API 
  __________________________________________________________________________
 |                               |            |                             |
