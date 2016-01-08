@@ -9,7 +9,7 @@ http://localhost:3000/api/phonebooks
 ## Header Parameters
 Content-Type  application/json
 
-## Request Sample to test a Phonebook Create API
+## Request body to create phonebook entry
 
 {
  "phonebook": {
