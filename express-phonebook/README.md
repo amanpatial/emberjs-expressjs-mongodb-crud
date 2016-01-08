@@ -3,8 +3,10 @@
 2. npm install  
 3. node bin/www
 
-## Header Parameters
+## API END POINT
+http://localhost:3000/api/phonebooks
 
+## Header Parameters
 Content-Type  application/json
 
 ## Request Sample to test a Phonebook Create API
