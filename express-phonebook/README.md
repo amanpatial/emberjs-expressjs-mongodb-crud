@@ -3,7 +3,7 @@
 2. npm install  
 3. node bin/www
 
-## API END POINT
+## API End Point
 http://localhost:3000/api/phonebooks
 
 ## Header Parameters
